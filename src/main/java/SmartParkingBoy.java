@@ -1,19 +1,22 @@
 import java.util.List;
 
-public class ParkingBoy {
+public class SmartParkingBoy {
     private String name;
     private List<ParkingLot> parkingLotArrayList;
-    public ParkingBoy(String name, List<ParkingLot> parkingLotArrayList) {
+    public SmartParkingBoy(String name, List<ParkingLot> parkingLotArrayList) {
         this.name = name;
         this.parkingLotArrayList = parkingLotArrayList;
     }
     public ParkingLot getParkingLot() {
+        ParkingLot optimumParkingLot = parkingLotArrayList.get(0);
         for (ParkingLot parkingLot : parkingLotArrayList) {
             if (parkingLot.getCapacity() != 0) {
-                return parkingLot;
+                if (parkingLot.getCapacity() > optimumParkingLot.getCapacity()) {
+                    optimumParkingLot = parkingLot;
+                }
             }
         }
-        return parkingLotArrayList.get(0);
+        return optimumParkingLot;
     }
 
     public ParkingLot getParkingLot(Ticket ticket) {
