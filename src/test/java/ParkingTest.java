@@ -51,10 +51,9 @@ public class ParkingTest {
         ParkingLot parkingLot2 = new ParkingLot(parkingLotId2, capacity);
         Car car = new Car(carId);
         Ticket ticket = parkingLot1.park(car);
-        //When
-        Car fetchedCar = parkingLot2.fetch(ticket);
-        //Then
-        assertNull(fetchedCar);
+        //When/Then
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> parkingLot2.fetch(ticket));
+        assertEquals("Unrecognized ticket", exception.getMessage());
     }
 
     @Test
@@ -68,10 +67,8 @@ public class ParkingTest {
         Ticket ticket = parkingLot.park(car);
         Car fetchedCar = parkingLot.fetch(ticket);
         //When
-        Car fechedDuplicateCar = parkingLot.fetch(ticket);
-        //Then
-
-        assertNull(fechedDuplicateCar);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> parkingLot.fetch(ticket));
+        assertEquals("Unrecognized ticket", exception.getMessage());
     }
 
     @Test
@@ -83,10 +80,11 @@ public class ParkingTest {
         ParkingLot parkingLot = new ParkingLot(parkingLotId1, capacity);
         Car car = new Car(id);
         //When
-        Ticket ticket = parkingLot.park(car);
-        //Then
-        assertNull(ticket);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> parkingLot.park(car));
+        assertEquals("Not enough position", exception.getMessage());
     }
+
+
 
 
 }

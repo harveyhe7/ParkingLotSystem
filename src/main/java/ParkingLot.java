@@ -17,7 +17,7 @@ public class ParkingLot {
             this.parkingList.add(car);
             return new Ticket(car.getId(), this.parkingLotId);
         }
-        return null;
+        throw new IllegalArgumentException("Not enough position");
     }
 
     public boolean isCarExist(String id) {
@@ -35,8 +35,7 @@ public class ParkingLot {
 
     public Car fetch(Ticket ticket) {
         if (!ticket.getParkingLotId().equals(this.parkingLotId)) {
-            return null;
-
+            throw new IllegalArgumentException("Unrecognized ticket");
         }
         if(!ticket.getTicketStatus()) {
             for(Car car :parkingList) {
@@ -48,6 +47,6 @@ public class ParkingLot {
                 }
             }
         }
-        return null;
+        throw new IllegalArgumentException("Unrecognized ticket");
     }
 }
