@@ -83,6 +83,4 @@ public class ParkingTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> parkingLot.park(car));
         assertEquals("Not enough position", exception.getMessage());
     }
-
-
 }

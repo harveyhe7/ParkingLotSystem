@@ -1,11 +1,18 @@
+import java.util.List;
+
 public class ParkingBoy {
     private String name;
-    private ParkingLot parkingLot;
-    public ParkingBoy(String name, ParkingLot parkingLot) {
+    private List<ParkingLot> parkingLotArrayList;
+    public ParkingBoy(String name, List<ParkingLot> parkingLotArrayList) {
         this.name = name;
-        this.parkingLot = parkingLot;
+        this.parkingLotArrayList = parkingLotArrayList;
     }
     public ParkingLot getParkingLot() {
-        return this.parkingLot;
+        for (ParkingLot parkingLot : parkingLotArrayList) {
+            if (parkingLot.getCapacity() != 0) {
+                return parkingLot;
+            }
+        }
+        return parkingLotArrayList.getFirst();
     }
 }
