@@ -2,7 +2,7 @@ import java.util.List;
 
 public class ParkingBoy {
     private String name;
-    private List<ParkingLot> parkingLotArrayList;
+    protected List<ParkingLot> parkingLotArrayList;
     public ParkingBoy(String name, List<ParkingLot> parkingLotArrayList) {
         this.name = name;
         this.parkingLotArrayList = parkingLotArrayList;

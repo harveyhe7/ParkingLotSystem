@@ -1,11 +1,10 @@
 import java.util.List;
 
-public class SmartParkingBoy {
-    private String name;
-    private List<ParkingLot> parkingLotArrayList;
+public class SmartParkingBoy extends ParkingBoy {
+    //继承ParkingBoy
+
     public SmartParkingBoy(String name, List<ParkingLot> parkingLotArrayList) {
-        this.name = name;
-        this.parkingLotArrayList = parkingLotArrayList;
+        super(name, parkingLotArrayList);
     }
     public ParkingLot getParkingLot() {
         ParkingLot optimumParkingLot = parkingLotArrayList.get(0);
@@ -19,12 +18,4 @@ public class SmartParkingBoy {
         return optimumParkingLot;
     }
 
-    public ParkingLot getParkingLot(Ticket ticket) {
-        for (ParkingLot parkingLot : parkingLotArrayList) {
-            if (ticket.getParkingLotId().equals(parkingLot.getParkingLotId())) {
-                return parkingLot;
-            }
-        }
-        return parkingLotArrayList.get(0);
-    }
 }
