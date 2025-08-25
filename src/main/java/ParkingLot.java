@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 
 public class ParkingLot {
+    private String parkingLotId;
     private int capacity;
     ArrayList<Car> parkingList;
 
-    public ParkingLot(int capacity) {
+    public ParkingLot(String parkingLotId, int capacity) {
+        this.parkingLotId = parkingLotId;
         this.capacity = capacity;
         this.parkingList = new ArrayList<>();
     }
@@ -13,7 +15,7 @@ public class ParkingLot {
         if (this.capacity > 0) {
             this.capacity -= 1;
             this.parkingList.add(car);
-            return new Ticket(car.getId());
+            return new Ticket(car.getId(), this.parkingLotId);
         }
         return null;
     }
@@ -32,10 +34,15 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
+        if (!ticket.getParkingLotId().equals(this.parkingLotId)) {
+            return null;
+
+        }
         if(!ticket.getTicketStatus()) {
             for(Car car :parkingList) {
                 if(car.getId().equals(ticket.getId())) {
                     this.capacity += 1;
+                    this.parkingList.remove(car);
                     ticket.useTicket();
                     return car;
                 }
