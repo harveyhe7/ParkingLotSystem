@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class ParkingLot {
     private String parkingLotId;
     private int capacity;
+    private int initialCapacity;
     ArrayList<Car> parkingList;
 
 
@@ -10,12 +11,16 @@ public class ParkingLot {
     public String getParkingLotId() {
         return this.parkingLotId;
     }
+    public int getInitialCapacity() {
+        return this.initialCapacity;
+    }
 
 
     public ParkingLot(String parkingLotId, int capacity) {
         this.parkingLotId = parkingLotId;
         this.capacity = capacity;
         this.parkingList = new ArrayList<>();
+        this.initialCapacity = capacity;
     }
 
     public Ticket park(Car car) {
