@@ -62,4 +62,28 @@ public class ParkingBoyTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> parkingBoy.getParkingLot().fetch(ticket));
         assertEquals("Unrecognized ticket", exception.getMessage());
     }
+
+
+    @Test
+    public void test_parkinBoy_ticket_fetching_car_in_parkingLot2() {
+        int capacity = 10;
+        String id = "12345";
+        String parkingLotId1 = "1";
+        String parkingLotId2 = "2";
+        ParkingLot parkingLot1 = new ParkingLot(parkingLotId1, capacity);
+        ParkingLot parkingLot2 = new ParkingLot(parkingLotId2, capacity);
+        List<ParkingLot> parkingLotArrayList = List.of(parkingLot1, parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy("John", parkingLotArrayList);
+        Car car = new Car(id);
+        Ticket ticket = parkingLot2.park(car);
+
+        //When
+        Car fetchedCar = parkingBoy.getParkingLot(ticket).fetch(ticket);
+
+        //Then
+        assertEquals(car, fetchedCar);
+    }
+
+
+
 }

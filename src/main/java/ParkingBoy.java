@@ -15,4 +15,13 @@ public class ParkingBoy {
         }
         return parkingLotArrayList.getFirst();
     }
+
+    public ParkingLot getParkingLot(Ticket ticket) {
+        for (ParkingLot parkingLot : parkingLotArrayList) {
+            if (ticket.getParkingLotId().equals(parkingLot.getParkingLotId())) {
+                return parkingLot;
+            }
+        }
+        return parkingLotArrayList.getFirst();
+    }
 }

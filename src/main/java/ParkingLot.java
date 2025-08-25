@@ -5,6 +5,13 @@ public class ParkingLot {
     private int capacity;
     ArrayList<Car> parkingList;
 
+
+
+    public String getParkingLotId() {
+        return this.parkingLotId;
+    }
+
+
     public ParkingLot(String parkingLotId, int capacity) {
         this.parkingLotId = parkingLotId;
         this.capacity = capacity;
