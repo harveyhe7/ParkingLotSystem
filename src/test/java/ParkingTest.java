@@ -65,7 +65,7 @@ public class ParkingTest {
         ParkingLot parkingLot = new ParkingLot(parkingLotId1, capacity);
         Car car = new Car(id);
         Ticket ticket = parkingLot.park(car);
-        Car fetchedCar = parkingLot.fetch(ticket);
+        parkingLot.fetch(ticket);
         //When
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> parkingLot.fetch(ticket));
         assertEquals("Unrecognized ticket", exception.getMessage());
@@ -83,8 +83,6 @@ public class ParkingTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> parkingLot.park(car));
         assertEquals("Not enough position", exception.getMessage());
     }
-
-
 
 
 }
